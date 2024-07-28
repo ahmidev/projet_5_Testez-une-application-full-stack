@@ -83,7 +83,7 @@ describe('LoginComponent', () => {
       statusText: 'Unauthorized'
     });
 
-    jest.spyOn(authService, 'login').mockReturnValue(throwError(errorResponse));
+    jest.spyOn(authService, 'login').mockReturnValue(throwError(() => errorResponse));
     component.form.controls['email'].setValue('test@example.com');
     component.form.controls['password'].setValue('password');
     component.submit();
