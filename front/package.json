@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "testCoverage": "jest --coverage", 
+    "test:coverage": "jest --coverage", 
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e:ci": "ng run yoga:e2e-ci",
