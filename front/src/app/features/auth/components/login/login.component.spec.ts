@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';
+import { NgZone } from '@angular/core';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -22,6 +23,7 @@ describe('LoginComponent', () => {
   let authService: AuthService;
   let sessionService: SessionService;
   let router: Router;
+  let ngZone: NgZone;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,7 +37,8 @@ describe('LoginComponent', () => {
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
-        ReactiveFormsModule]
+        ReactiveFormsModule,
+       ]
     })
       .compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
@@ -43,6 +46,7 @@ describe('LoginComponent', () => {
     authService = TestBed.inject(AuthService);
     sessionService = TestBed.inject(SessionService);
     router = TestBed.inject(Router);
+    ngZone = TestBed.inject(NgZone);
     fixture.detectChanges();
   });
 
@@ -66,7 +70,9 @@ describe('LoginComponent', () => {
     const navigateSpy = jest.spyOn(router, 'navigate');
     component.form.controls['email'].setValue('ahmid.aitouali@laposte.net');
     component.form.controls['password'].setValue('test!123');
-    component.submit();
+    ngZone.run(() => {
+      component.submit();
+    });
     expect(sessionService.logIn).toHaveBeenCalledWith(mockSessionInformation);
     expect(navigateSpy).toHaveBeenCalledWith(['/sessions']);
   });
