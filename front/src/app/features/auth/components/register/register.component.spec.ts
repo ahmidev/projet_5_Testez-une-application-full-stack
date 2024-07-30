@@ -13,12 +13,14 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
+import { NgZone } from '@angular/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let authService: AuthService;
   let router: Router;
+  let ngZone: NgZone;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,6 +46,7 @@ describe('RegisterComponent', () => {
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
+    ngZone = TestBed.inject(NgZone);
     fixture.detectChanges();
   });
 
@@ -66,8 +69,9 @@ describe('RegisterComponent', () => {
     component.form.controls['firstName'].setValue(mockRegisterRequest.firstName);
     component.form.controls['lastName'].setValue(mockRegisterRequest.lastName);
     component.form.controls['password'].setValue(mockRegisterRequest.password);
-    component.submit();
-
+    ngZone.run(() => {
+      component.submit();
+    });
     expect(authService.register).toHaveBeenCalledWith(mockRegisterRequest);
     expect(navigateSpy).toHaveBeenCalledWith(['/login']);
   });
