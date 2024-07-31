@@ -28,9 +28,9 @@ describe('MeComponent', () => {
 
   const mockUser: User = {
     id: 1,
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
+    firstName: 'Ahmid',
+    lastName: 'AIT OUALI',
+    email: 'ahmid.aitouali@laposte.net',
     admin: true,
     password:'null',
     createdAt: new Date('2024-01-01T00:00:00.000Z'),
@@ -78,10 +78,10 @@ describe('MeComponent', () => {
     const compiled = fixture.nativeElement;
 
     const nameElement = compiled.querySelector('mat-card-content p:first-child');
-    expect(nameElement.textContent).toContain('Name: John DOE');
+    expect(nameElement.textContent).toContain('Name: Ahmid AIT OUALI');
 
     const emailElement = compiled.querySelector('mat-card-content p:nth-child(2)');
-    expect(emailElement.textContent).toContain('Email: john.doe@example.com');
+    expect(emailElement.textContent).toContain('Email: ahmid.aitouali@laposte.net');
 
     const adminElement = compiled.querySelector('mat-card-content p.my2');
     expect(adminElement.textContent).toContain('You are admin');
