@@ -1,9 +1,14 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "isolatedModules": false
+    "isolatedModules": false,
+    "types": ["cypress", "node"]  // Ensure only Cypress and Node types are included
   },
   "include": [
-    "../node_modules/cypress"
+    "../node_modules/cypress",
+    "**/*.ts"
+  ],
+  "exclude": [
+    "../node_modules/@types/jest", // Exclude Jest types
   ]
 }
