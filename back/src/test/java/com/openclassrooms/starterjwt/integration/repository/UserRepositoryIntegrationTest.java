@@ -1,6 +1,7 @@
-package com.openclassrooms.starterjwt.repository;
+package com.openclassrooms.starterjwt.integration.repository;
 
 import com.openclassrooms.starterjwt.models.User;
+import com.openclassrooms.starterjwt.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +20,7 @@ class UserRepositoryIntegrationTest {
 
     @Test
     void existsByEmailTest() {
-        // given - Configuration initiale
+        // given
         User user = new User();
         user.setEmail("yoga@studio.com");
         user.setPassword("test123!"); // Password encoded
@@ -28,16 +29,16 @@ class UserRepositoryIntegrationTest {
         user.setAdmin(true);
         userRepository.save(user);
 
-        // when - Action à tester
+        // when
         boolean existsByEmail = userRepository.existsByEmail("yoga@studio.com");
 
-        // then - Validation du résultat
+        // then
         assertTrue(existsByEmail, "L'utilisateur avec l'email 'yoga@studio.com' devrait exister dans la base de données");
     }
 
     @Test
     void findByEmailTest() {
-        // given - Configuration initiale
+        // given
         User user = new User();
         user.setEmail("user@user.com");
         user.setPassword("tes123!"); // Password encoded
@@ -46,10 +47,10 @@ class UserRepositoryIntegrationTest {
         user.setAdmin(false);
         userRepository.save(user);
 
-        // when - Action à tester
+        // when
         Optional<User> foundUser = userRepository.findByEmail("user@user.com");
 
-        // then - Validation du résultat
+        // then
         assertTrue(foundUser.isPresent(), "L'utilisateur avec l'email 'user@user.com' devrait être trouvé dans la base de données");
         assertEquals("user@user.com", foundUser.get().getEmail());
         assertEquals("User", foundUser.get().getFirstName());
@@ -58,7 +59,7 @@ class UserRepositoryIntegrationTest {
 
     @Test
     void deleteUserByIdTest() {
-        // given - Configuration initiale
+        // given
         User user = new User();
         user.setEmail("delete@user.com");
         user.setPassword("test123"); // Password encoded
@@ -67,11 +68,11 @@ class UserRepositoryIntegrationTest {
         user.setAdmin(false);
         User savedUser = userRepository.save(user);
 
-        // when - Action à tester
+        // when
         userRepository.deleteById(savedUser.getId());
         Optional<User> deletedUser = userRepository.findById(savedUser.getId());
 
-        // then - Validation du résultat
+        // then
         assertFalse(deletedUser.isPresent(), "L'utilisateur avec l'ID '" + savedUser.getId() + "' ne devrait plus exister dans la base de données");
     }
 }

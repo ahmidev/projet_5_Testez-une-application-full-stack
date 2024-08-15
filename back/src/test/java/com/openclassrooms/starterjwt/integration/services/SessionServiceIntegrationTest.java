@@ -1,4 +1,4 @@
-package com.openclassrooms.starterjwt.integration;
+package com.openclassrooms.starterjwt.integration.services;
 
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
@@ -29,7 +29,6 @@ public class SessionServiceIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        // Création d'une session pour les tests
         testSession = new Session();
         testSession.setName("Yoga");
         testSession.setDate(new Date());
@@ -39,7 +38,6 @@ public class SessionServiceIntegrationTest {
 
     @AfterEach
     void tearDown() {
-        // Nettoyage des données après chaque test
         sessionRepository.deleteAll();
     }
 
