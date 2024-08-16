@@ -1,6 +1,7 @@
 package com.openclassrooms.starterjwt.integration.controllers;
 
 import com.openclassrooms.starterjwt.dto.UserDto;
+import com.openclassrooms.starterjwt.mapper.TeacherMapper;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.services.UserService;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,10 @@ class UserControllerIntegrationTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private TeacherMapper teacherMapper;
+
 
     @Test
     @WithMockUser(username = "ahmid.aitouali@laposte.net", roles = "ADMIN")
