@@ -79,7 +79,12 @@ npm run test
 npm run test:coverage
 ```
 
-Le rapport HTML sera disponible ici : `front/coverage/lcov-report/index.html`.
+Le rapport HTML sera disponible ici : `/front/coverage/jest/lcov-report/index.html`.
+
+![Rapport de couverture des tests unitaires ](/ressources/front-jest.png)
+
+![Rapport de couverture des tests unitaires ](/ressources/front-jestb.png)
+
 
 3. **Tests End-to-End (E2E)** :
 
@@ -94,6 +99,18 @@ Ou avec :
 ```bash
 npm run e2e
 ```
+4. **Rapport de couverture des tests End-to-End (E2E)** :
+
+```bash
+npm run "e2e:coverage":
+```
+
+Le rapport HTML sera disponible ici : `/front/coverage/lcov-report/index.html`.
+
+![Rapport de couverture des tests End-to-End (E2E) ](/ressources/front-e2e.png)
+
+![Rapport de couverture des tests  End-to-End (E2E) ](/ressources/front-e2eb.png)
+
 
 ### Back-End
 
@@ -107,3 +124,4 @@ mvn clean test
 
 Le rapport HTML sera disponible ici : `back/target/site/jacoco/index.html`.
 
+![Rapport de couverture des tests  back ](/ressources/back.png)
